@@ -1,2 +1,2 @@
-# rgeo-server
+# rgeoSrv
 Reverse geocoding as a microservice
