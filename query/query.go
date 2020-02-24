@@ -1,3 +1,6 @@
+/*
+Package query implements the query handler for rgeoSrv
+*/
 package query
 
 import (
@@ -30,7 +33,7 @@ func NewHandlers(l *log.Logger) (*Handlers, error) {
 	}, nil
 }
 
-// query handles request to "/"
+// query handles request to "/query"
 func (h *Handlers) query(w http.ResponseWriter, r *http.Request) {
 	coords, err := parseURL(r.URL)
 	if err != nil {
@@ -64,7 +67,7 @@ func (h *Handlers) query(w http.ResponseWriter, r *http.Request) {
 func parseURL(u *url.URL) ([]float64, error) {
 	if u.RawQuery == "" || !strings.ContainsRune(u.RawQuery, '&') {
 		return []float64{},
-			errors.New("rgeoSrv requires a request in the form /?lon&lat")
+			errors.New("rgeoSrv requires a request in the form /query?lon&lat")
 	}
 
 	coord := strings.Split(u.RawQuery, "&")

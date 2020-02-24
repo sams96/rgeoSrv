@@ -6,6 +6,7 @@ See https://github.com/sams96/rgeo for more information on rgeo.
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 	"os"
@@ -15,12 +16,18 @@ import (
 )
 
 var (
-	srvAddr = ":8080"
+	defaultSrvAddr = ":8080"
 )
 
 func main() {
+	// Bind flags
+	srvAddr := flag.String("addr", defaultSrvAddr, "Address to open the server on")
+	flag.Parse()
+
+	// Create logger
 	l := log.New(os.Stderr, "rgeoSrv ", log.LstdFlags)
 
+	// Create mux and add handlers
 	mux := http.NewServeMux()
 	q, err := query.NewHandlers(l)
 	if err != nil {
@@ -29,9 +36,10 @@ func main() {
 
 	q.SetupRoutes(mux)
 
-	srv := newServer(mux, srvAddr)
+	// Create and start server
+	srv := newServer(mux, *srvAddr)
 
-	l.Println("server starting at", srvAddr)
+	l.Println("server starting at", *srvAddr)
 	err = srv.ListenAndServe()
 	if err != nil {
 		l.Fatalf("server failed to start: %v", err)
