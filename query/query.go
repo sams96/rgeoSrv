@@ -16,11 +16,13 @@ import (
 	"github.com/sams96/rgeo"
 )
 
+// Handlers supplies dependencies for query handlers
 type Handlers struct {
 	l *log.Logger
 	r *rgeo.Rgeo
 }
 
+// NewHandlers creates new Handlers type for query
 func NewHandlers(l *log.Logger) (*Handlers, error) {
 	r, err := rgeo.New(rgeo.Countries10)
 	if err != nil {
@@ -95,6 +97,7 @@ func (h *Handlers) logger(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
+// SetupRoutes sets up the query routes on the given mux
 func (h *Handlers) SetupRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("/query", h.logger(h.query))
 }

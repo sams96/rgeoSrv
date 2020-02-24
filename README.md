@@ -8,3 +8,27 @@ rgeoSrv wraps the package rgeo into a reverse geocoding microservice.
 
 See [github.com/sams96/rgeo](https://github.com/sams96/rgeo) for more
 information on rgeo.
+
+### Installation
+
+    go get github.com/sams96/rgeoSrv/..
+
+or,
+
+    docker pull docker.pkg.github.com/sams96/rgeosrv/rgeosrv
+
+### Usage
+
+    rgeoSrv -addr localhost:8080
+
+or,
+
+	docker run -p 8080:8080 docker.pkg.github.com/sams96/rgeosrv/rgeosrv and
+
+then:
+
+    curl "localhost:8080/query?0&52"
+
+will yield:
+
+    {"country":"United Kingdom","country_long":"United Kingdom of Great Britain and Northern Ireland","country_code_2":"GB","country_code_3":"GBR","continent":"Europe","region":"Europe","subregion":"Northern Europe"}
