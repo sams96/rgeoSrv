@@ -20,7 +20,16 @@ jobs:
       run: go build
 
     - name: Test
-      run: go test
+      run: go test ./... -coverprofile=coverage.txt -covermode=atomic
+
+    - name: Update Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.txt
+
+    - name: Update Go Report Card
+      uses: creekorful/goreportcard-action@v1.0
 
   macOS:
     runs-on: macos-latest
@@ -41,7 +50,7 @@ jobs:
       run: go build
 
     - name: Test
-      run: go test
+      run: go test ./...
 
   windows:
     runs-on: windows-latest
@@ -62,4 +71,4 @@ jobs:
       run: go build
 
     - name: Test
-      run: go test
+      run: go test ./...
