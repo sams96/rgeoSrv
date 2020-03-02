@@ -27,8 +27,8 @@ or,
 
 then:
 
-    curl "localhost:8080/query?0&52"
+	curl "localhost:8080/query?0&51.5045"
 
 will return:
 
-    {"country":"United Kingdom","country_long":"United Kingdom of Great Britain and Northern Ireland","country_code_2":"GB","country_code_3":"GBR","continent":"Europe","region":"Europe","subregion":"Northern Europe"}
+	{"country":"United Kingdom","country_long":"United Kingdom of Great Britain and Northern Ireland","country_code_2":"GB","country_code_3":"GBR","continent":"Europe","region":"Europe","subregion":"Northern Europe","province":"Tower Hamlets","province_code":"GB-TWH","city":"London"}

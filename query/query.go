@@ -39,7 +39,7 @@ type Handlers struct {
 
 // NewHandlers creates new Handlers type for query
 func NewHandlers(l *log.Logger) (*Handlers, error) {
-	r, err := rgeo.New(rgeo.Countries10)
+	r, err := rgeo.New(rgeo.Provinces10, rgeo.Cities10)
 	if err != nil {
 		return nil, err
 	}
