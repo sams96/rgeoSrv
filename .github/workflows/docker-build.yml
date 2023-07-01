@@ -9,7 +9,7 @@ jobs:
           run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
         - uses: actions/checkout@master
         - name: Docker publish
-          uses: elgohr/Publish-Docker-Github-Action@master
+          uses: elgohr/Publish-Docker-Github-Action@v5
           with:
             name: sams96/rgeosrv/rgeosrv
             username: ${{ secrets.DOCKER_USERNAME }}
